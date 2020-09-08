@@ -1,0 +1,11 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "cucumber": "^6.0.5"
+  },
+  "scripts": {
+    "e2e": "cucumber-js"
+  }
+}

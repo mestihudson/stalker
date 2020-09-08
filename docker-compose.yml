@@ -3,7 +3,7 @@ version: '3.8'
 services:
   e2e:
     image: node:alpine
-    entrypoint: /bin/sh -c 'tail -f'
+    entrypoint: /bin/sh -c 'yarn install; tail -f'
     volumes:
     - .:/ws
     working_dir: /ws/e2e
