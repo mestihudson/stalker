@@ -1,13 +1,34 @@
-const { Given, When, Then } = require('cucumber')
+const { Before, Given, When, Then } = require('cucumber')
+const { By, Builder } = require('selenium-webdriver')
+const { expect } = require('chai')
 
-Given(`User fills required info`, () => {
-  return `pending`
+let driver
+
+Before(() => {
+  driver = new Builder()
+    .forBrowser("chrome")
+    .usingServer("http://hub:4444/wd/hub")
+    .build()
 })
 
-When(`User saves the task`, () => {
-  return `pending`
+Given(`User fills required info`, async () => {
+  await driver.get("http://app:3000")
+  const input = await driver.findElement(
+    By.xpath(`//*[@data-input='Name']`)
+  )
+  await input.sendKeys("Task Name")
 })
 
-Then(`Task has been added`, () => {
-  return `pending`
+When(`User saves the task`, async () => {
+  const trigger = await driver.findElement(
+    By.xpath(`//*[@data-trigger='Save']`)
+  )
+  await trigger.click()
+})
+
+Then(`Task has been added`, async () => {
+  const components = await driver.findElements(
+    By.xpath(`//*[@data-component='Alert']`)
+  )
+  expect(components.length).to.equal(1)
 })
