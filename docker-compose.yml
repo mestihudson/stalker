@@ -8,3 +8,20 @@ services:
     - .:/ws
     working_dir: /ws/e2e
 
+  hub:
+    image: selenium/hub:3.141.59
+    ports:
+    - 4444
+
+  chrome:
+    image: selenium/node-chrome-debug:3.141.59
+    ports:
+    - 5900
+    volumes:
+    - .:/ws
+    environment:
+    - HUB_PORT_4444_TCP_ADDR=hub
+    - HUB_PORT_4444_TCP_PORT=4444
+    - SCREEN_WIDTH=2000
+    - SCREEN_HEIGHT=2000
+
