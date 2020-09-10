@@ -27,7 +27,7 @@ services:
 
   app:
     image: node:alpine
-    entrypoint: /bin/sh -c 'tail -f'
+    entrypoint: /bin/sh -c 'yarn install && yarn start; tail -f'
     volumes:
     - .:/ws
     working_dir: /ws/app
