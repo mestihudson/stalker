@@ -1,4 +1,4 @@
-const { Before, Given, When, Then } = require('cucumber')
+const { Before, After, Given, When, Then } = require('cucumber')
 const { By, Builder } = require('selenium-webdriver')
 const { expect } = require('chai')
 
@@ -9,6 +9,10 @@ Before(() => {
     .forBrowser("chrome")
     .usingServer("http://hub:4444/wd/hub")
     .build()
+})
+
+After(async () => {
+  await driver.quit()
 })
 
 Given(`User fills required info`, async () => {
