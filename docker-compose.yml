@@ -28,6 +28,7 @@ services:
   app:
     image: node:alpine
     entrypoint: /bin/sh -c 'yarn install && yarn start; tail -f'
+    stdin_open: true
     volumes:
     - .:/ws
     working_dir: /ws/app
