@@ -16,7 +16,7 @@ After(async () => {
 })
 
 Given(`User fills required info`, async () => {
-  await driver.get("http://app:3000")
+  await driver.get("http://19.19.19.19:3000")
   const input = await driver.findElement(
     By.xpath(`//*[@data-input='Name']`)
   )
