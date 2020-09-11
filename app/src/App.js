@@ -1,9 +1,10 @@
 import React from 'react'
 
-function App() {
+import Task from './views/Task'
+
+export default function App() {
   return (
-    <div className="App"></div>
+    <Task/>
   )
 }
 
-export default App
