@@ -2,10 +2,10 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 
-import Task from './Task'
-import Api from '../services/Api'
+import Task from '@/views/Task'
+import Api from '@/services/Api'
 
-jest.mock('../services/Api')
+jest.mock('@/services/Api')
 
 describe(`<Task/>`, () => {
   beforeEach(jest.resetAllMocks)

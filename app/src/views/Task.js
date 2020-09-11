@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import Api from '../services/Api'
+import Api from '@/services/Api'
 
 export default function Task() {
   const [name, setName] = useState('')
