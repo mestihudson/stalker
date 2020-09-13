@@ -5,10 +5,12 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon -e json,js --ignore node_modules 'yarn start'"
   },
   "devDependencies": {
     "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
     "supertest": "^4.0.2"
   },
   "dependencies": {
