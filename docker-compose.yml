@@ -9,7 +9,7 @@ networks:
 
 services:
   e2e:
-    image: node:alpine
+    image: node:12.18.3-alpine
     entrypoint: /bin/sh -c 'yarn install; tail -f'
     volumes:
     - .:/ws
@@ -42,7 +42,7 @@ services:
         ipv4_address: 19.19.19.11
 
   app:
-    image: node:alpine
+    image: node:12.18.3-alpine
     entrypoint: /bin/sh -c 'yarn install && yarn start; tail -f'
     stdin_open: true
     volumes:
@@ -58,7 +58,7 @@ services:
         ipv4_address: 19.19.19.19
 
   api:
-    image: node:alpine
+    image: node:12.18.3-alpine
     entrypoint: /bin/sh -c 'yarn install && yarn dev; tail -f'
     volumes:
     - .:/ws
