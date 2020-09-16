@@ -1,14 +1,17 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "start": "node index.js",
-    "dev": "nodemon -e json,js --ignore node_modules 'yarn start'"
+    "start": "babel-node src/index.js",
+    "dev": "nodemon --ext json,js --ignore node_modules --exec 'yarn start'"
   },
   "devDependencies": {
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "babel-plugin-extension-resolver": "^1.0.12",
+    "babel-plugin-module-resolver": "^4.0.0",
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "supertest": "^4.0.2"

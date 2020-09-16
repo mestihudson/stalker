@@ -1,4 +1,4 @@
-const { Router } = require('express')
+import { Router } from 'express'
 
 const router = Router()
 
@@ -6,5 +6,4 @@ router.post(`/`, (request, response) => {
   return response.status(201).json({})
 })
 
-module.exports = router
-
+export default router

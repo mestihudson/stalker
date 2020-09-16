@@ -1,6 +1,6 @@
-const request = require('supertest')
+import request from 'supertest'
 
-const app = require('../src/server')
+import app from '@/server'
 
 describe(`tasks`, () => {
   describe(`post`, () => {

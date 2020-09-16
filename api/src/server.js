@@ -1,8 +1,9 @@
-const app = require('express')()
+import express from 'express'
 
-const tasks = require('./routes/tasks')
+import tasks from '@/routes/tasks'
+
+const app = express()
 
 app.use(`/api/tasks`, tasks)
 
-module.exports = app
-
+export default app
