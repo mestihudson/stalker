@@ -1,0 +1,13 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --watchAll --verbose"
+  },
+  "devDependencies": {
+    "jest": "^26.6.1",
+    "supertest": "^6.0.0"
+  }
+}
