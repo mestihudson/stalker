@@ -10,7 +10,7 @@ function Task() {
   }
 
   const handleSaveClick = () => {
-    Api.createTask()
+    Api.createTask({ name })
       .then(() => console.log())
   }
 
