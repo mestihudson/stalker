@@ -9,30 +9,37 @@ jest.mock('../services/Api')
 describe(`views/<Task/>`, () => {
   beforeEach(jest.resetAllMocks)
 
+  const saveTask = async ({ name, api }) => {
+    Api.createTask = api
+    const { container } = render(<Task/>)
+    await fireEvent.change(
+      container.querySelector(`[data-input='Name']`),
+      { target: { value: name } }
+    )
+    await fireEvent.click(container.querySelector(`[data-trigger='Save']`))
+  }
+
+  const apiPromiseResolve = () => {
+    return jest.fn().mockImplementation(() => Promise.resolve())
+  }
+
+  const nameOfTask = () => 'Task Name'
+
   describe(`when save button has clicked`, () => {
     it(`should trigger api`, async () => {
-      Api.createTask = jest.fn().mockImplementation(() => Promise.resolve())
       await act(async () => {
-        const { container } = render(<Task/>)
-        await fireEvent.change(
-          container.querySelector(`[data-input='Name']`),
-          { target: { value: 'Task Name' } }
-        )
-        await fireEvent.click(container.querySelector(`[data-trigger='Save']`))
-        expect(Api.createTask).toHaveBeenCalled()
+        const api = apiPromiseResolve()
+        await saveTask({ api })
+        expect(api).toHaveBeenCalled()
       })
     })
 
     it(`should pass task name to api`, async () => {
-      Api.createTask = jest.fn().mockImplementation(() => Promise.resolve())
       await act(async () => {
-        const { container } = render(<Task/>)
-        await fireEvent.change(
-          container.querySelector(`[data-input='Name']`),
-          { target: { value: 'Task Name' } }
-        )
-        await fireEvent.click(container.querySelector(`[data-trigger='Save']`))
-        expect(Api.createTask).toHaveBeenCalledWith({ name: 'Task Name' })
+        const name = nameOfTask()
+        const api = apiPromiseResolve()
+        await saveTask({ name, api })
+        expect(api).toHaveBeenCalledWith({ name })
       })
     })
   })
