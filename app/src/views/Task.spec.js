@@ -17,6 +17,7 @@ describe(`views/<Task/>`, () => {
       { target: { value: name } }
     )
     await fireEvent.click(container.querySelector(`[data-trigger='Save']`))
+    return { container }
   }
 
   const apiPromiseResolve = () => {
@@ -24,6 +25,11 @@ describe(`views/<Task/>`, () => {
   }
 
   const nameOfTask = () => 'Task Name'
+
+  const thereAre = ({ container }, quantity) => {
+    expect(container.querySelectorAll(`[data-component='Alert']`))
+      .toHaveLength(quantity)
+  }
 
   describe(`when save button has clicked`, () => {
     it(`should trigger api`, async () => {
@@ -45,6 +51,14 @@ describe(`views/<Task/>`, () => {
   })
 
   describe(`when api has callbacked`, () => {
-    xit(`should show successful message`, async () => {})
+    it(`should show successful message`, async () => {
+      await act(async () => {
+        thereAre(await render(<Task />), 0)
+        const { container } = await saveTask({
+          name: nameOfTask(), api: apiPromiseResolve()
+        })
+        thereAre({ container }, 1)
+      })
+    })
   })
 })
