@@ -10,7 +10,7 @@ class Application {
   }
 
   async open() {
-    await this.driver.get("http://app:3000")
+    await this.driver.get("http://19.19.19.5:3000")
   }
 
   async fillTask() {
