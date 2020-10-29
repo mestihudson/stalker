@@ -1,4 +1,4 @@
-const { Before, Given, When, Then } = require('cucumber')
+const { After, Before, Given, When, Then } = require('cucumber')
 
 const Backdoor = require('../support/Backdoor')
 const Application = require('../support/Application')
@@ -8,6 +8,10 @@ let backdoor, application
 Before(() => {
   backdoor = new Backdoor()
   application = new Application()
+})
+
+After(async () => {
+  await application.close()
 })
 
 Given(`User fills required info`, async () => {
