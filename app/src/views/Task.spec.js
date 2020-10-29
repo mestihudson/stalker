@@ -23,7 +23,18 @@ describe(`views/<Task/>`, () => {
       })
     })
 
-    xit(`should pass task name to api`, async () => {})
+    it(`should pass task name to api`, async () => {
+      Api.createTask = jest.fn().mockImplementation(() => Promise.resolve())
+      await act(async () => {
+        const { container } = render(<Task/>)
+        await fireEvent.change(
+          container.querySelector(`[data-input='Name']`),
+          { target: { value: 'Task Name' } }
+        )
+        await fireEvent.click(container.querySelector(`[data-trigger='Save']`))
+        expect(Api.createTask).toHaveBeenCalledWith({ name: 'Task Name' })
+      })
+    })
   })
 
   describe(`when api has callbacked`, () => {
