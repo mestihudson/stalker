@@ -1,13 +1,27 @@
-const { Given, When, Then } = require('cucumber')
+const { Before, After, Given, When, Then } = require('cucumber')
+
+let backdoor, application
+
+Before(() => {
+  backdoor = new Backdoor()
+  application = new Application()
+})
+
+After(async () => {
+  await application.close()
+})
 
 Given(`User fills required info`, async () => {
-  return 'pending'
+  await backdoor.ensureThereIsNoTask()
+  await application.open()
+  await application.fillTask()
 })
 
 When(`User saves the task`, async () => {
-  return 'pending'
+  await application.saveTask()
 })
 
 Then(`Task has been added`, async () => {
-  return 'pending'
+  await application.hasShowedSuccessfulMessage()
+  await backdoor.thereIsOneTask()
 })
