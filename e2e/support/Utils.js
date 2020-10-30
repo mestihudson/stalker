@@ -1,6 +1,9 @@
 const fs = require('fs')
 
 const Utils = {
+  async sleep(ms = 1000) {
+    await new Promise((resolve) => setTimeout(resolve, ms))
+  },
   async readFrom(directory, file) {
     const filepath = `${directory}/${file}`
     const content = await fs.readFileSync(filepath)

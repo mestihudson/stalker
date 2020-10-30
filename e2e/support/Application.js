@@ -1,6 +1,8 @@
 const { By, Builder } = require('selenium-webdriver')
 const { expect } = require('chai')
 
+const { sleep } = require('./Utils')
+
 class Application {
   constructor() {
     this.driver = new Builder()
@@ -32,6 +34,7 @@ class Application {
   }
 
   async hasShowedSuccessfulMessage() {
+    await sleep()
     const components = await this.driver.findElements(
       By.xpath(`//*[@data-component='Alert']`)
     )
