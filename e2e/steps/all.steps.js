@@ -1,5 +1,8 @@
 const { Before, After, Given, When, Then } = require('cucumber')
 
+const Backdoor = require('../support/Backdoor')
+const Application = require('../support/Application')
+
 let backdoor, application
 
 Before(() => {
