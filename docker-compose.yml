@@ -22,3 +22,16 @@ services:
     - HUB_PORT_4444_TCP_PORT=4444
     - SCREEN_WIDTH=2000
     - SCREEN_HEIGHT=2000
+
+  app:
+    image: node:12.18.3-alpine
+    entrypoint: /bin/sh -c 'yarn install && yarn start; tail -f'
+    stdin_open: true
+    volumes:
+    - .:/ws
+    working_dir: /ws/app
+    ports:
+    - 3000
+    environment:
+    - PORT=3000
+    - HOST=0.0.0.0
