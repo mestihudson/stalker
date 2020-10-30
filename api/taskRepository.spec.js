@@ -5,7 +5,7 @@ const repository = require('./taskRepository')
 describe(`taskRepository`, () => {
   describe(`saveTask`, () => {
     const directory = '/ws/.backdoor'
-    const file = 'task.json'
+    const file = 'tasks.json'
 
     const ensureThereIsNoTask = async () => await utils
       .writeTo([], directory, file)
