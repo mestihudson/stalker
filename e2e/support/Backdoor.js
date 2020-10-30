@@ -1,5 +1,6 @@
-const fs = require('fs')
 const { expect } = require('chai')
+
+const { readFrom, writeTo } = require('./Utils')
 
 class Backdoor {
   constructor() {
@@ -9,17 +10,11 @@ class Backdoor {
 
   async ensureThereIsNoTask() {
     const tasks = []
-    const content = JSON.stringify(tasks)
-    if (!fs.existsSync(this.directory)) {
-      fs.mkdirSync(this.directory, { recursive: true })
-    }
-    await fs
-      .writeFileSync(`${this.directory}/${this.tasksFile}`, content, 'utf8')
+    await writeTo(tasks, this.directory, this.tasksFile)
   }
 
   async thereIsOneTask() {
-    const content = await fs.readFileSync(`${this.directory}/${this.tasksFile}`)
-    const tasks = JSON.parse(content)
+    const tasks = await readFrom(this.directory, this.tasksFile)
     expect(tasks).to.have.length(1)
   }
 }
