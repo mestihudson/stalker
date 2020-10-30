@@ -6,6 +6,6 @@
     "cucumber": "^6.0.5"
   },
   "scripts": {
-    "e2e": "cucumber-js"
+    "e2e": "cucumber-js --require steps"
   }
 }
