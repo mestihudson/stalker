@@ -13,6 +13,10 @@ class Application {
     await this.driver.get("http://19.19.19.5:3000")
   }
 
+  async close() {
+    await this.driver.quit()
+  }
+
   async fillTask() {
     const input = await this.driver.findElement(
       By.xpath(`//*[@data-input='Name']`)
